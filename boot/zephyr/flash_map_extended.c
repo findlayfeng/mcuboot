@@ -53,7 +53,13 @@ int flash_device_base(uint8_t fd_id, uintptr_t *ret)
  */
 int flash_area_id_from_image_slot(int slot)
 {
-    return slot + FLASH_AREA_IMAGE_0;
+	switch (slot) {
+	case 0:
+		return FLASH_AREA_IMAGE_0;
+	case 1:
+	default:
+		return FLASH_AREA_IMAGE_1;
+	}
 }
 
 int flash_area_sector_from_off(off_t off, struct flash_sector *sector)
